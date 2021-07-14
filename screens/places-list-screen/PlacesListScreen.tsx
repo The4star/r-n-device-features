@@ -17,7 +17,7 @@ const PlacesListScreen = ({ navigation }: IPlacesListScreenProp) => {
   const places = useSelector<ICombinedStates, Place[]>(state => state.places.places)
   return (
     <FlatList data={places} renderItem={(itemData: ListRenderItemInfo<Place>) => (
-      <PlaceItem title={itemData.item.title} address={null} image={null} onSelect={() => {
+      <PlaceItem title={itemData.item.title} address={null} image={itemData.item.image} onSelect={() => {
         navigation.navigate({
           name: 'PlaceDetail',
           params: { place: itemData.item }

@@ -11,9 +11,11 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { PlacesNavigatorParamList } from '../../types/navigation.types';
 import { useDispatch } from 'react-redux';
 import { addPlace } from '../../state/places.state';
+import ImagePickerComponent from '../../components/image-selector/ImagePicker';
 
 const NewPlaceSchema = yup.object().shape({
   title: yup.string().required(),
+  image: yup.string().required()
 });
 
 type NewPlaceScreenNavigationProp = StackNavigationProp<PlacesNavigatorParamList, 'NewPlace'>
@@ -51,6 +53,17 @@ const NewPlaceScreen = ({ navigation }: INewPlaceScreenProps) => {
           defaultValue=""
         />
         {errors.title ? <Text style={styles.errorText}>Please enter a title</Text> : null}
+        <Controller
+          control={control}
+          render={({ field: { onChange } }) => (
+            <ImagePickerComponent
+              onImagePicked={(value: string) => onChange(value)}
+            />
+          )}
+          name="image"
+          defaultValue=""
+        />
+        {errors.image ? <Text style={styles.errorText}>Please pick an image</Text> : null}
         <Button
           title="Save Place"
           color={colors.primary}
