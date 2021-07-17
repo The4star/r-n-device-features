@@ -35,7 +35,7 @@ const PlacesListScreen = ({ navigation }: IPlacesListScreenProp) => {
 
   return (
     <FlatList keyExtractor={(item) => item.title} data={places} renderItem={(itemData: ListRenderItemInfo<Place>) => (
-      <PlaceItem title={itemData.item.title} address={null} image={itemData.item.image} onSelect={() => {
+      <PlaceItem title={itemData.item.title} address={itemData.item.address} image={itemData.item.image} onSelect={() => {
         navigation.navigate({
           name: 'PlaceDetail',
           params: { place: itemData.item }
