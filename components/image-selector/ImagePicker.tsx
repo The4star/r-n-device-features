@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Button, Text, Image, Platform } from 'react-native';
+import { View, Button, Text, Image, Platform, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import colors from '../../constants/colors';
 
@@ -45,7 +45,7 @@ const ImagePickerComponent = ({ onImagePicked }: IImagePickerProps) => {
 
   return (
     <View style={styles.imagePicker}>
-      <View style={styles.imagePreview}>
+      <TouchableOpacity style={styles.imagePreview} onPress={pickImageHandler}>
         {
           pickedImage ?
             <Image style={styles.image} source={{ uri: pickedImage }} />
@@ -53,7 +53,7 @@ const ImagePickerComponent = ({ onImagePicked }: IImagePickerProps) => {
             <Text>No image picked yet</Text>
         }
 
-      </View>
+      </TouchableOpacity>
       <Button
         title="Pick Image"
         color={colors.primary}
